@@ -1,51 +1,114 @@
 {
-  "name": "quick-ray-dumper",
-	"displayName": "Quick Ray Dumper",
-	"description": "Automating the process of writing Ray's syntax to dump stuff",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.63.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:quick-ray-dumper.helloWorld"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "quick-ray-dumper.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p . -w --outDir out",
-		"pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.63.0",
-		"@types/glob": "^7.1.4",
-		"@types/mocha": "^9.0.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.1.0",
-		"@typescript-eslint/parser": "^5.1.0",
-		"eslint": "^8.1.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.3",
-		"typescript": "^4.4.4",
-		"ts-loader": "^9.2.5",
-		"webpack": "^5.52.1",
-		"webpack-cli": "^4.8.0",
-		"@vscode/test-electron": "^1.6.2"
-	}
+    "name": "quick-ray-dumper",
+    "displayName": "Quick Ray Dumper",
+    "description": "Automating the process of writing Ray's syntax to dump stuff",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:quick-ray-dumper.helloWorld",
+        "onCommand:quick-ray-dumper.displayLogMessage"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "quick-ray-dumper.helloWorld",
+                "title": "Hello World"
+            },
+            {
+                "command": "quick-ray-dumper.displayLogMessage",
+                "title": "Quick Ray Dumper: Display Log Message"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Quick Ray Dumper Configuration",
+            "properties": {
+                "quickRayDumper.wrapLogMessage": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Determine if the log message should be wrapped or not."
+                },
+                "quickRayDumper.logMessagePrefix": {
+                    "type": "string",
+                    "default": "🚀",
+                    "description": "The prefix of the log message."
+                },
+                "quickRayDumper.includeFileNameAndLineNum": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to include the file name and the line number of the log message."
+                },
+                "quickRayDumper.addSemicolonInTheEnd": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to add or not a semicolon in the end of the log message."
+                },
+                "quickRayDumper.insertEnclosingClass": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to insert or not the enclosing class of the selected variable in the log message."
+                },
+                "quickRayDumper.insertEnclosingFunction": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to insert or not the enclosing function of the selected variable in the log message."
+                },
+                "quickRayDumper.delimiterInsideMessage": {
+                    "type": "string",
+                    "default": "~",
+                    "description": "The delimiter that will separate the different log message elements (file name, line number, class, function and variable)"
+                },
+                "quickRayDumper.quote": {
+                    "type": "string",
+                    "enum": [
+                        "\"",
+                        "'",
+                        "`"
+                    ],
+                    "default": "\"",
+                    "description": "Double quotes, single quotes or backtick"
+                }
+            }
+        },
+        "keybindings": [
+            {
+                "command": "quick-ray-dumper.displayLogMessage",
+                "key": "ctrl+alt+l",
+                "mac": "ctrl+alt+l"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.63.0",
+        "@types/glob": "^7.1.4",
+        "@types/mocha": "^9.0.0",
+        "@types/node": "14.x",
+        "@typescript-eslint/eslint-plugin": "^5.1.0",
+        "@typescript-eslint/parser": "^5.1.0",
+        "eslint": "^8.1.0",
+        "glob": "^7.1.7",
+        "mocha": "^9.1.3",
+        "typescript": "^4.4.4",
+        "ts-loader": "^9.2.5",
+        "webpack": "^5.52.1",
+        "webpack-cli": "^4.8.0",
+        "@vscode/test-electron": "^1.6.2"
+    }
 }
