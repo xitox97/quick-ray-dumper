@@ -10,14 +10,19 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:quick-ray-dumper.helloWorld"
+        "onCommand:quick-ray-dumper.showQueries",
+        "onCommand:quick-ray-dumper.stopShowingQueries"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "quick-ray-dumper.helloWorld",
-				"title": "Hello World"
+				"command": "quick-ray-dumper.showQueries",
+				"title": "Show Queries"
+			},
+			{
+				"command": "quick-ray-dumper.stopShowingQueries",
+				"title": "Stop Showing Queries"
 			}
 		]
 	},
