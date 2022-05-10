@@ -11,6 +11,7 @@
 	],
 	"activationEvents": [
         "onCommand:quick-ray-dumper.showQueries",
+        "onCommand:quick-ray-dumper.showQueriesCallback"
         "onCommand:quick-ray-dumper.stopShowingQueries"
 	],
 	"main": "./dist/extension.js",
@@ -20,10 +21,15 @@
 				"command": "quick-ray-dumper.showQueries",
 				"title": "Show Queries"
 			},
+            {
+				"command": "quick-ray-dumper.showQueriesCallback",
+				"title": "Show Queries By Callback"
+			},
 			{
 				"command": "quick-ray-dumper.stopShowingQueries",
 				"title": "Stop Showing Queries"
 			}
+
 		]
 	},
 	"scripts": {
