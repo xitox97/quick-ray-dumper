@@ -9,7 +9,7 @@ This extension helps you to generate ray debug syntax, no longer need to type ma
 
 ## Features
 
-picture coming soon..
+![](demo.gif)
 
 ## Supported Command
 
