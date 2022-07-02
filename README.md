@@ -1,15 +1,14 @@
 # quick-ray-dumper :flying_saucer:
 
-This extension helps you to generate ray debug syntax, no longer need to type manually :fire:.
+This extension helps you to generate [spatie/ray](https://spatie.be/docs/ray/v1/usage/reference) debug syntax, no longer need to type manually :fire:.
+
+![](demo.gif)
+
 
 ## Support Syntax
 - PHP
 - Laravel
 - More coming soon.
-
-## Features
-
-![](demo.gif)
 
 ## Supported Command
 
@@ -244,6 +243,9 @@ ray()->showHttpClientRequests(function() {
     Http::get('https://example.com'); // this request will be displayed.
 });
 ```
+
+## Credits
+- https://github.com/LuisEGR/console-log-vscode
 
 
 
