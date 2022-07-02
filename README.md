@@ -166,16 +166,10 @@ ray()->stopShowingDuplicateQueries();
 
 Ray: Duplicate Queries (callback) - Display all duplicated queries that are executed in callback
 ```PHP
-User::all();
-User::all(); // this query won't be displayed.
-
 ray()->showDuplicateQueries(function() {
     User::where('id', 1)->get('id');
     User::where('id', 1)->get('id'); // this query will be displayed.
 });
-
-User::all();
-User::all(); // this query won't be displayed.
 ```
 
 Ray: Slow Queries - Display all queries that take longer than N milliseconds to execute
@@ -218,24 +212,14 @@ ray()->showJobs();
 
 Ray: Stop Show Jobs - Stop Displaying jobs
 ```PHP
-ray()->showJobs();
-
-dispatch(new TestJob()); // this job will be displayed
-
 ray()->stopShowingJobs();
-
-dispatch(new MyTestOtherJob()); // this job won't be displayed.
 ```
 
 Ray: Jobs (Callback) - Display all jobs that are executed in callback
 ```PHP
-event(new TestJob()); // this job won't be displayed.
-
 ray()->showJobs(function() {
     dispatch(new TestJob()); // this job will be displayed.
 });
-
-event(new TestJob()); // this job won't be displayed.
 ```
 
 Ray: Cache - Display all cache events that are executed
