@@ -1,70 +1,269 @@
-# quick-ray-dumper README
+# quick-ray-dumper :flying_saucer:
 
-This is the README for your extension "quick-ray-dumper". After writing up a brief description, we recommend including the following sections.
+This extension helps you to generate ray debug syntax, no longer need to type manually :fire:.
+
+## Support Syntax
+- PHP
+- Laravel
+- More coming soon.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+picture coming soon..
 
-For example if there is an image subfolder under your extension project workspace:
+## Supported Command
 
-\!\[feature X\]\(images/feature-x.png\)
+Ray: Variable - Display a string, array or object (*ctrl+alt+p* command shortcut)
+```PHP
+ray($variable);
+```
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Ray: Views - Display all views
+```PHP
+ray()->showViews();
+```
 
-## Requirements
+Ray: Env - Display environment variables
+```PHP
+ray()->env();
+```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Ray: Requests - Display all requests
+```PHP
+ray()->showRequests();
+```
 
-## Extension Settings
+Ray: Model - Display the attributes and relations of a model
+```PHP
+ray()->model($model);
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Ray: Carbon - Send Carbon instances to Ray
+```PHP
+ray()->carbon($carbon);
+```
 
-For example:
+Ray: Classname - Send the classname of an object to Ray
+```PHP
+ray()->className($object);
+```
 
-This extension contributes the following settings:
+Ray: Backtrace - Check entire backtrace
+```PHP
+ray()->backtrace();
+```
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Ray: Caller - Discover where code is being called
+```PHP
+ray()->caller();
+```
 
-## Known Issues
+Ray: Clear Screen - Clear current screen
+```PHP
+ray()->clearScreen();
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Ray: Clear All - Clear current and all previous screens
+```PHP
+ray()->clearAll();
+```
 
-## Release Notes
+Ray: Count - Count how many times a piece of code is called
+```PHP
+ray()->count();
+```
 
-Users appreciate release notes as you update your extension.
+Ray: Measure - Display runtime and memory usage
+```PHP
+ray()->measure();
+```
 
-### 1.0.0
+Ray: Pause - Pause execution
+```PHP
+ray()->pause();
+```
 
-Initial release of ...
+Ray: PHP Info - Display PHP info
+```PHP
+ray()->phpinfo();
+```
 
-### 1.0.1
+Ray: Separtor - Add a visual separator
+```PHP
+ray()->separator();
+```
 
-Fixed issue #.
+Ray: Trace - Check entire backtrace
+```PHP
+ray()->trace();
+```
 
-### 1.1.0
+Ray: Exception - Display extended information about an Error or Exception
+```PHP
+ray()->exception($e);
+```
 
-Added features X, Y, and Z.
+Ray: HTML - Send HTML to Ray
+```PHP
+ray()->html($html);
+```
 
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
+Ray: Image - Display an image in Ray
+```PHP
+ray($variable);
+```
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Ray: JSON - Send JSON to Ray
+```PHP
+ray()->image($path);
+```
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Ray: Text - Display the raw text for a string while preserving whitespace formatting
+```PHP
+ray()->text($string);
+```
 
-## Working with Markdown
+Ray: XML - Display formatted XML in Ray
+```PHP
+ray()->xml($xmlString);
+```
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+Ray: Queries - Display all queries that are executed
+```PHP
+ray()->showQueries();
+```
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
+Ray: Queries (Callback) - Display all queries that are executed in Callback
+```PHP
+ray()->showQueries(function() {
+    User::all(); // this query will be displayed.
+});
+```
 
-### For more information
+Ray: Stop Show Queries - Stop displaying queries
+```PHP
+ray()->stopShowingQueries();
+```
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Ray: Count Queries - Count all queries that are executed within a callable
+```PHP
+ray()->countQueries(function() {
+    User::all();
+    User::all();
+    User::all();
+});
+```
 
-**Enjoy!**
+Ray: Duplicate Queries - Display all duplicated queries that are executed
+```PHP
+ray()->showDuplicateQueries();
+```
+
+Ray: Stop Show Duplicated Queries - Stop displaying duplicated queries
+```PHP
+ray()->stopShowingDuplicateQueries();
+```
+
+Ray: Duplicate Queries (callback) - Display all duplicated queries that are executed in callback
+```PHP
+User::all();
+User::all(); // this query won't be displayed.
+
+ray()->showDuplicateQueries(function() {
+    User::where('id', 1)->get('id');
+    User::where('id', 1)->get('id'); // this query will be displayed.
+});
+
+User::all();
+User::all(); // this query won't be displayed.
+```
+
+Ray: Slow Queries - Display all queries that take longer than N milliseconds to execute
+```PHP
+ray()->showSlowQueries(100);
+```
+
+Ray: Slow Queries (callback) - Display all queries that take longer than N milliseconds to execute in callback
+```PHP
+ray()->showSlowQueries(100, function() {
+    User::where('id', 1)->get('id'); // this query will be displayed if it takes longer than 100ms.
+});
+```
+
+Ray: Events - Display all events that are executed
+```PHP
+ray()->showEvents();
+```
+
+Ray: Stop Show Events - Stop Displaying all events that are executed
+```PHP
+ray()->stopShowingEvents();
+```
+
+Ray: Events (Callback) - Display all events that are executed in callback
+```PHP
+event(new MyEvent()); // this event won't be displayed.
+
+ray()->showEvents(function() {
+    event(new MyEvent()); // this event will be displayed.
+});
+
+event(new MyEvent()); // this event won't be displayed.
+```
+
+Ray: Jobs - Display all jobs that are executed
+```PHP
+ray()->showJobs();
+```
+
+Ray: Stop Show Jobs - Stop Displaying jobs
+```PHP
+ray()->showJobs();
+
+dispatch(new TestJob()); // this job will be displayed
+
+ray()->stopShowingJobs();
+
+dispatch(new MyTestOtherJob()); // this job won't be displayed.
+```
+
+Ray: Jobs (Callback) - Display all jobs that are executed in callback
+```PHP
+event(new TestJob()); // this job won't be displayed.
+
+ray()->showJobs(function() {
+    dispatch(new TestJob()); // this job will be displayed.
+});
+
+event(new TestJob()); // this job won't be displayed.
+```
+
+Ray: Cache - Display all cache events that are executed
+```PHP
+ray()->showCache();
+```
+
+Ray: Stop Show Cache - Stop displaying cache
+```PHP
+ray()->stopShowingCache();
+```
+
+Ray: Http Client Requests - Display all http client requests that are executed
+```PHP
+ray()->showHttpClientRequests();
+```
+
+Ray: Stop Show Http Client Requests - Stop displaying http client requests
+```PHP
+ray()->stopShowingHttpClientRequests();
+```
+
+Ray: Http Client Requests (callback) - Display all http client requests that are executed in callback 
+```PHP
+ray()->showHttpClientRequests(function() {
+    Http::get('https://example.com'); // this request will be displayed.
+});
+```
+
+
+
