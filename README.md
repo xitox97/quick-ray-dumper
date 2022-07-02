@@ -245,6 +245,7 @@ ray()->showHttpClientRequests(function() {
 ```
 
 ## Credits
+- https://spatie.be/docs/ray/v1/introduction
 - https://github.com/LuisEGR/console-log-vscode
 
 
