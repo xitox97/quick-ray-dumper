@@ -25,6 +25,25 @@ enum EAction {
     SHOW_ENV = "showEnv",
     SHOW_REQUESTS = "showRequests",
     MODEL = "model",
+    RAY_VARIABLE = "rayVariable",
+    RAY_CARBON = "rayCarbon",
+    RAY_CLASSNAME = "rayClassname",
+    RAY_BACKTRACE = "rayBacktrace",
+    RAY_CALLER = "rayCaller",
+    RAY_CLEAR_SCREEN = "rayClearScreen",
+    RY_CLEAR_ALL = "rayClearAll",
+    RAY_COUNT = "rayCount",
+    RAY_MEASURE = "rayMeasure",
+    RAY_PAUSE = "rayPause",
+    RAY_PHP_INFO = "rayPhpInfo",
+    RAY_SEPARATOR = "raySeparator",
+    RAY_TRACE = "rayTrace",
+    RAY_EXCEPTION = "rayException",
+    RAY_HTML = "rayHtml",
+    RAY_IMAGE = "rayImage",
+    RAY_JSON = "rayJson",
+    RAY_TEXT = "rayText",
+    RAY_XML = "rayXml",
 }
 
 export const activate = (context: vscode.ExtensionContext) => {
@@ -52,7 +71,26 @@ export const activate = (context: vscode.ExtensionContext) => {
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.showViews", () => handleAction(EAction.SHOW_VIEWS)),
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.showEnv", () => handleAction(EAction.SHOW_ENV)),
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.showRequests", () => handleAction(EAction.SHOW_REQUESTS)),
-        vscode.commands.registerTextEditorCommand("quick-ray-dumper.model", () => handleActionFunction(EAction.MODEL))
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.model", () => handleActionFunction(EAction.MODEL)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayVariable", () => handleActionFunction(EAction.RAY_VARIABLE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayCarbon", () => handleActionFunction(EAction.RAY_CARBON)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayClassname", () => handleActionFunction(EAction.RAY_CLASSNAME)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayBacktrace", () => handleAction(EAction.RAY_BACKTRACE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayCaller", () => handleAction(EAction.RAY_CALLER)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayClearScreen", () => handleAction(EAction.RAY_CLEAR_SCREEN)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayClearAll", () => handleAction(EAction.RY_CLEAR_ALL)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayCount", () => handleAction(EAction.RAY_COUNT)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayMeasure", () => handleAction(EAction.RAY_MEASURE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayPause", () => handleAction(EAction.RAY_PAUSE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayPhpInfo", () => handleAction(EAction.RAY_PHP_INFO)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.raySeparator", () => handleAction(EAction.RAY_SEPARATOR)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayTrace", () => handleAction(EAction.RAY_TRACE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayException", () => handleActionFunction(EAction.RAY_EXCEPTION)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayHtml", () => handleActionFunction(EAction.RAY_HTML)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayImage", () => handleActionFunction(EAction.RAY_IMAGE)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayJson", () => handleActionFunction(EAction.RAY_JSON)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayText", () => handleActionFunction(EAction.RAY_TEXT)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayXml", () => handleActionFunction(EAction.RAY_XML))
     )
 }
 
@@ -77,6 +115,16 @@ const handleAction = (action: string) => {
             [EAction.SHOW_VIEWS]: "ray()->showViews();",
             [EAction.SHOW_ENV]: "ray()->env();",
             [EAction.SHOW_REQUESTS]: "ray()->showRequests();",
+            [EAction.RAY_BACKTRACE]: "ray()->backtrace();",
+            [EAction.RAY_CALLER]: "ray()->caller();",
+            [EAction.RAY_CLEAR_SCREEN]: "ray()->clearScreen();",
+            [EAction.RY_CLEAR_ALL]: "ray()->clearAll();",
+            [EAction.RAY_COUNT]: "ray()->count();",
+            [EAction.RAY_MEASURE]: "ray()->measure();",
+            [EAction.RAY_PAUSE]: "ray()->pause();",
+            [EAction.RAY_PHP_INFO]: "ray()->phpinfo();",
+            [EAction.RAY_SEPARATOR]: "ray()->separator();",
+            [EAction.RAY_TRACE]: "ray()->trace();",
         }
 
         return actions[action]
@@ -111,6 +159,23 @@ const handleActionCallback = async (action: string) => {
 }
 
 const handleActionFunction = async (action: string) => {
+    const getActionFunction = (action: string): string => {
+        const actions: { [key: string]: string } = {
+            [EAction.MODEL]: "ray()->model(",
+            [EAction.RAY_VARIABLE]: "ray(",
+            [EAction.RAY_CARBON]: "ray()->carbon(",
+            [EAction.RAY_CLASSNAME]: "ray()->className(",
+            [EAction.RAY_EXCEPTION]: "ray()->exception(",
+            [EAction.RAY_HTML]: "ray()->html(",
+            [EAction.RAY_IMAGE]: "ray()->image(",
+            [EAction.RAY_JSON]: "ray()->json(",
+            [EAction.RAY_TEXT]: "ray()->text(",
+            [EAction.RAY_XML]: "ray()->xml(",
+        }
+
+        return actions[action]
+    }
+
     var { editor, selection, dest } = await processSelection()
 
     let selectedText = editor!.document.getText(selection)
@@ -121,8 +186,7 @@ const handleActionFunction = async (action: string) => {
         selectedText = "$" + selectedText
     }
 
-    const ray = "\n" + startSpace + `ray()->model(${selectedText});`
-
+    const ray = "\n" + startSpace + `${getActionFunction(action)}${selectedText});`
     dest = dest.translate(0, line.text.length)
 
     editor!.edit((editBuilder) => {
@@ -158,12 +222,6 @@ const surroundWith = (selection: vscode.Selection, type: string) => {
     let lines = getSelectLines(selection)
     const { prefix } = getPrefixAndIndent(lines[0])
     return [`${prefix}${type}function() {`, ...indentLines(lines), `${prefix}});`].join("\n")
-}
-
-const surroundWithFunction = (selection: vscode.Selection, type: string) => {
-    let lines = getSelectLines(selection)
-    const { prefix } = getPrefixAndIndent(lines[0])
-    return [`${prefix}ray()->${type}(`, ...indentLines(lines), `${prefix});`].join("\n")
 }
 
 const indentLines = (lines: vscode.TextLine[]) => {

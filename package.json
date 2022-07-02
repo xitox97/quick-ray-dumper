@@ -33,106 +33,201 @@
         "onCommand:quick-ray-dumper.showViews",
         "onCommand:quick-ray-dumper.showEnv",
         "onCommand:quick-ray-dumper.showRequests",
-        "onCommand:quick-ray-dumper.model"
+        "onCommand:quick-ray-dumper.model",
+        "onCommand:quick-ray-dumper.rayVariable",
+        "onCommand:quick-ray-dumper.rayCarbon",
+        "onCommand:quick-ray-dumper.rayClassname",
+        "onCommand:quick-ray-dumper.rayBacktrace",
+        "onCommand:quick-ray-dumper.rayCaller",
+        "onCommand:quick-ray-dumper.rayClearScreen",
+        "onCommand:quick-ray-dumper.rayClearAll",
+        "onCommand:quick-ray-dumper.rayCount",
+        "onCommand:quick-ray-dumper.rayMeasure",
+        "onCommand:quick-ray-dumper.rayPause",
+        "onCommand:quick-ray-dumper.rayPhpInfo",
+        "onCommand:quick-ray-dumper.raySeparator",
+        "onCommand:quick-ray-dumper.rayTrace",
+        "onCommand:quick-ray-dumper.rayException",
+        "onCommand:quick-ray-dumper.rayHtml",
+        "onCommand:quick-ray-dumper.rayImage",
+        "onCommand:quick-ray-dumper.rayJson",
+        "onCommand:quick-ray-dumper.rayText",
+        "onCommand:quick-ray-dumper.rayXml"
     ],
     "main": "./dist/extension.js",
     "contributes": {
         "commands": [
             {
                 "command": "quick-ray-dumper.showQueries",
-                "title": "Show Queries"
+                "title": "Ray: Queries - Display all queries that are executed"
             },
             {
                 "command": "quick-ray-dumper.showQueriesCallback",
-                "title": "Show Queries By Callback"
+                "title": "Ray: Queries (Callback) - Display all queries that are executed in Callback"
             },
             {
                 "command": "quick-ray-dumper.stopShowingQueries",
-                "title": "Stop Showing Queries"
+                "title": "Ray: Stop Show Queries - Stop displaying queries"
             },
             {
                 "command": "quick-ray-dumper.countQueries",
-                "title": "Count Queries"
+                "title": "Ray: Count Queries - Count all queries that are executed within a callable"
             },
             {
                 "command": "quick-ray-dumper.showDuplicateQueries",
-                "title": "Show Duplicate Queries"
+                "title": "Ray: Duplicate Queries - Display all duplicated queries that are executed"
             },
             {
                 "command": "quick-ray-dumper.stopShowingDuplicateQueries",
-                "title": "Stop Show Duplicated Queries"
+                "title": "Ray: Stop Show Duplicated Queries - Stop displaying duplicated queries"
             },
             {
                 "command": "quick-ray-dumper.showDuplicateQueriesCallback",
-                "title": "Show Duplicated Queries By Callback"
+                "title": "Ray: Duplicate Queries (callback) - Display all duplicated queries that are executed in callback"
             },
             {
                 "command": "quick-ray-dumper.showSlowQueries",
-                "title": "Show Slow Queries"
+                "title": "Ray: Slow Queries - Display all queries that take longer than N milliseconds to execute"
             },
             {
                 "command": "quick-ray-dumper.showSlowQueriesCallback",
-                "title": "Show Slow Queries By Callback"
+                "title": "Ray: Slow Queries (callback) - Display all queries that take longer than N milliseconds to execute in callback"
             },
             {
                 "command": "quick-ray-dumper.showEvents",
-                "title": "Show Events"
+                "title": "Ray: Events - Display all events that are executed"
             },
             {
                 "command": "quick-ray-dumper.stopShowingEvents",
-                "title": "Stop Showing Events"
+                "title": "Ray: Stop Show Events - Stop Displaying all events that are executed"
             },
             {
                 "command": "quick-ray-dumper.showEventsCallback",
-                "title": "Show Events By Callback"
+                "title": "Ray: Events (Callback) - Display all events that are executed in callback"
             },
             {
                 "command": "quick-ray-dumper.showJobs",
-                "title": "Show Jobs"
+                "title": "Ray: Jobs - Display all jobs that are executed"
             },
             {
                 "command": "quick-ray-dumper.stopShowingJobs",
-                "title": "Stop Showing Jobs"
+                "title": "Ray: Stop Show Jobs - Stop Displaying jobs"
             },
             {
                 "command": "quick-ray-dumper.showJobsCallback",
-                "title": "Show Jobs By Callback"
+                "title": "Ray: Jobs (Callback) - Display all jobs that are executed in callback"
             },
             {
                 "command": "quick-ray-dumper.showCache",
-                "title": "Show Cache"
+                "title": "Ray: Cache - Display all cache events that are executed"
             },
             {
                 "command": "quick-ray-dumper.stopShowingCache",
-                "title": "Stop Showing Cache"
+                "title": "Ray: Stop Show Cache - Stop displaying cache"
             },
             {
                 "command": "quick-ray-dumper.showHttpClientRequests",
-                "title": "Show Http Client Requests"
+                "title": "Ray: Http Client Requests - Display all http client requests that are executed"
             },
             {
                 "command": "quick-ray-dumper.stopShowingHttpClientRequests",
-                "title": "Stop Showing Http Client Requests"
+                "title": "Ray: Stop Show Http Client Requests - Stop displaying http client requests"
             },
             {
                 "command": "quick-ray-dumper.showHttpClientRequestsCallback",
-                "title": "Show Http Client Requests By Callback"
+                "title": "Ray: Http Client Requests (callback) - Display all http client requests that are executed in callback"
             },
             {
                 "command": "quick-ray-dumper.showViews",
-                "title": "Show Views"
+                "title": "Ray: Views - Display all views"
             },
             {
                 "command": "quick-ray-dumper.showEnv",
-                "title": "Show Env"
+                "title": "Ray: Env - Display environment variables"
             },
             {
                 "command": "quick-ray-dumper.showRequests",
-                "title": "Show Requests"
+                "title": "Ray: Requests - Display all requests"
             },
             {
                 "command": "quick-ray-dumper.model",
-                "title": "Show Model"
+                "title": "Ray: Model - Display the attributes and relations of a model"
+            },
+            {
+                "command": "quick-ray-dumper.rayVariable",
+                "title": "Ray: Variable - Display a string, array or object"
+            },
+            {
+                "command": "quick-ray-dumper.rayCarbon",
+                "title": "Ray: Carbon - Send Carbon instances to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayClassname",
+                "title": "Ray: Classname - Send the classname of an object to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayBacktrace",
+                "title": "Ray: Backtrace - Check entire backtrace"
+            },
+            {
+                "command": "quick-ray-dumper.rayCaller",
+                "title": "Ray: Caller - Discover where code is being called"
+            },
+            {
+                "command": "quick-ray-dumper.rayClearScreen",
+                "title": "Ray: Clear Screen - Clear current screen"
+            },
+            {
+                "command": "quick-ray-dumper.rayClearAll",
+                "title": "Ray: Clear All - Clear current and all previous screens"
+            },
+            {
+                "command": "quick-ray-dumper.rayCount",
+                "title": "Ray: Count - Count how many times a piece of code is called"
+            },
+            {
+                "command": "quick-ray-dumper.rayMeasure",
+                "title": "Ray: Measure - Display runtime and memory usage"
+            },
+            {
+                "command": "quick-ray-dumper.rayPause",
+                "title": "Ray: Pause - Pause execution"
+            },
+            {
+                "command": "quick-ray-dumper.rayPhpInfo",
+                "title": "Ray: PHP Info - Display PHP info"
+            },
+            {
+                "command": "quick-ray-dumper.raySeparator",
+                "title": "Ray: Separtor - Add a visual separator"
+            },
+            {
+                "command": "quick-ray-dumper.rayTrace",
+                "title": "Ray: Trace - Check entire backtrace"
+            },
+            {
+                "command": "quick-ray-dumper.rayException",
+                "title": "Ray: Exception - Display extended information about an Error or Exception"
+            },
+            {
+                "command": "quick-ray-dumper.rayHtml",
+                "title": "Ray: HTML - Send HTML to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayImage",
+                "title": "Ray: Image - Display an image in Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayJson",
+                "title": "Ray: JSON - Send JSON to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayText",
+                "title": "Ray: Text - Display the raw text for a string while preserving whitespace formatting"
+            },
+            {
+                "command": "quick-ray-dumper.rayXml",
+                "title": "Ray: XML - Display formatted XML in Ray"
             }
         ]
     },
