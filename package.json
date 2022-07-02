@@ -229,6 +229,13 @@
                 "command": "quick-ray-dumper.rayXml",
                 "title": "Ray: XML - Display formatted XML in Ray"
             }
+        ],
+        "keybindings": [
+            {
+                "command": "quick-ray-dumper.rayVariable",
+                "key": "ctrl+alt+p",
+                "mac": "ctrl+alt+p"
+            }
         ]
     },
     "scripts": {
