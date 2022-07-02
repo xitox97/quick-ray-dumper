@@ -1,51 +1,261 @@
 {
-  "name": "quick-ray-dumper",
-	"displayName": "Quick Ray Dumper",
-	"description": "Automating the process of writing Ray's syntax to dump stuff",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.63.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:quick-ray-dumper.helloWorld"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "quick-ray-dumper.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run package",
-		"compile": "webpack",
-		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p . -w --outDir out",
-		"pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.63.0",
-		"@types/glob": "^7.1.4",
-		"@types/mocha": "^9.0.0",
-		"@types/node": "14.x",
-		"@typescript-eslint/eslint-plugin": "^5.1.0",
-		"@typescript-eslint/parser": "^5.1.0",
-		"eslint": "^8.1.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.3",
-		"typescript": "^4.4.4",
-		"ts-loader": "^9.2.5",
-		"webpack": "^5.52.1",
-		"webpack-cli": "^4.8.0",
-		"@vscode/test-electron": "^1.6.2"
-	}
+    "name": "quick-ray-dumper",
+    "displayName": "Quick Ray Dumper",
+    "description": "Automating the process of writing Ray's syntax to dump stuff",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.63.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:quick-ray-dumper.showQueries",
+        "onCommand:quick-ray-dumper.showQueriesCallback",
+        "onCommand:quick-ray-dumper.stopShowingQueries",
+        "onCommand:quick-ray-dumper.countQueries",
+        "onCommand:quick-ray-dumper.showDuplicateQueries",
+        "onCommand:quick-ray-dumper.stopShowingDuplicateQueries",
+        "onCommand:quick-ray-dumper.showDuplicateQueriesCallback",
+        "onCommand:quick-ray-dumper.showSlowQueries",
+        "onCommand:quick-ray-dumper.showSlowQueriesCallback",
+        "onCommand:quick-ray-dumper.showEvents",
+        "onCommand:quick-ray-dumper.stopShowingEvents",
+        "onCommand:quick-ray-dumper.showEventsCallback",
+        "onCommand:quick-ray-dumper.showJobs",
+        "onCommand:quick-ray-dumper.stopShowingJobs",
+        "onCommand:quick-ray-dumper.showJobsCallback",
+        "onCommand:quick-ray-dumper.showCache",
+        "onCommand:quick-ray-dumper.stopShowingCache",
+        "onCommand:quick-ray-dumper.showHttpClientRequests",
+        "onCommand:quick-ray-dumper.stopShowingHttpClientRequests",
+        "onCommand:quick-ray-dumper.showHttpClientRequestsCallback",
+        "onCommand:quick-ray-dumper.showViews",
+        "onCommand:quick-ray-dumper.showEnv",
+        "onCommand:quick-ray-dumper.showRequests",
+        "onCommand:quick-ray-dumper.model",
+        "onCommand:quick-ray-dumper.rayVariable",
+        "onCommand:quick-ray-dumper.rayCarbon",
+        "onCommand:quick-ray-dumper.rayClassname",
+        "onCommand:quick-ray-dumper.rayBacktrace",
+        "onCommand:quick-ray-dumper.rayCaller",
+        "onCommand:quick-ray-dumper.rayClearScreen",
+        "onCommand:quick-ray-dumper.rayClearAll",
+        "onCommand:quick-ray-dumper.rayCount",
+        "onCommand:quick-ray-dumper.rayMeasure",
+        "onCommand:quick-ray-dumper.rayPause",
+        "onCommand:quick-ray-dumper.rayPhpInfo",
+        "onCommand:quick-ray-dumper.raySeparator",
+        "onCommand:quick-ray-dumper.rayTrace",
+        "onCommand:quick-ray-dumper.rayException",
+        "onCommand:quick-ray-dumper.rayHtml",
+        "onCommand:quick-ray-dumper.rayImage",
+        "onCommand:quick-ray-dumper.rayJson",
+        "onCommand:quick-ray-dumper.rayText",
+        "onCommand:quick-ray-dumper.rayXml"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "quick-ray-dumper.showQueries",
+                "title": "Ray: Queries - Display all queries that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.showQueriesCallback",
+                "title": "Ray: Queries (Callback) - Display all queries that are executed in Callback"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingQueries",
+                "title": "Ray: Stop Show Queries - Stop displaying queries"
+            },
+            {
+                "command": "quick-ray-dumper.countQueries",
+                "title": "Ray: Count Queries - Count all queries that are executed within a callable"
+            },
+            {
+                "command": "quick-ray-dumper.showDuplicateQueries",
+                "title": "Ray: Duplicate Queries - Display all duplicated queries that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingDuplicateQueries",
+                "title": "Ray: Stop Show Duplicated Queries - Stop displaying duplicated queries"
+            },
+            {
+                "command": "quick-ray-dumper.showDuplicateQueriesCallback",
+                "title": "Ray: Duplicate Queries (callback) - Display all duplicated queries that are executed in callback"
+            },
+            {
+                "command": "quick-ray-dumper.showSlowQueries",
+                "title": "Ray: Slow Queries - Display all queries that take longer than N milliseconds to execute"
+            },
+            {
+                "command": "quick-ray-dumper.showSlowQueriesCallback",
+                "title": "Ray: Slow Queries (callback) - Display all queries that take longer than N milliseconds to execute in callback"
+            },
+            {
+                "command": "quick-ray-dumper.showEvents",
+                "title": "Ray: Events - Display all events that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingEvents",
+                "title": "Ray: Stop Show Events - Stop Displaying all events that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.showEventsCallback",
+                "title": "Ray: Events (Callback) - Display all events that are executed in callback"
+            },
+            {
+                "command": "quick-ray-dumper.showJobs",
+                "title": "Ray: Jobs - Display all jobs that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingJobs",
+                "title": "Ray: Stop Show Jobs - Stop Displaying jobs"
+            },
+            {
+                "command": "quick-ray-dumper.showJobsCallback",
+                "title": "Ray: Jobs (Callback) - Display all jobs that are executed in callback"
+            },
+            {
+                "command": "quick-ray-dumper.showCache",
+                "title": "Ray: Cache - Display all cache events that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingCache",
+                "title": "Ray: Stop Show Cache - Stop displaying cache"
+            },
+            {
+                "command": "quick-ray-dumper.showHttpClientRequests",
+                "title": "Ray: Http Client Requests - Display all http client requests that are executed"
+            },
+            {
+                "command": "quick-ray-dumper.stopShowingHttpClientRequests",
+                "title": "Ray: Stop Show Http Client Requests - Stop displaying http client requests"
+            },
+            {
+                "command": "quick-ray-dumper.showHttpClientRequestsCallback",
+                "title": "Ray: Http Client Requests (callback) - Display all http client requests that are executed in callback"
+            },
+            {
+                "command": "quick-ray-dumper.showViews",
+                "title": "Ray: Views - Display all views"
+            },
+            {
+                "command": "quick-ray-dumper.showEnv",
+                "title": "Ray: Env - Display environment variables"
+            },
+            {
+                "command": "quick-ray-dumper.showRequests",
+                "title": "Ray: Requests - Display all requests"
+            },
+            {
+                "command": "quick-ray-dumper.model",
+                "title": "Ray: Model - Display the attributes and relations of a model"
+            },
+            {
+                "command": "quick-ray-dumper.rayVariable",
+                "title": "Ray: Variable - Display a string, array or object"
+            },
+            {
+                "command": "quick-ray-dumper.rayCarbon",
+                "title": "Ray: Carbon - Send Carbon instances to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayClassname",
+                "title": "Ray: Classname - Send the classname of an object to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayBacktrace",
+                "title": "Ray: Backtrace - Check entire backtrace"
+            },
+            {
+                "command": "quick-ray-dumper.rayCaller",
+                "title": "Ray: Caller - Discover where code is being called"
+            },
+            {
+                "command": "quick-ray-dumper.rayClearScreen",
+                "title": "Ray: Clear Screen - Clear current screen"
+            },
+            {
+                "command": "quick-ray-dumper.rayClearAll",
+                "title": "Ray: Clear All - Clear current and all previous screens"
+            },
+            {
+                "command": "quick-ray-dumper.rayCount",
+                "title": "Ray: Count - Count how many times a piece of code is called"
+            },
+            {
+                "command": "quick-ray-dumper.rayMeasure",
+                "title": "Ray: Measure - Display runtime and memory usage"
+            },
+            {
+                "command": "quick-ray-dumper.rayPause",
+                "title": "Ray: Pause - Pause execution"
+            },
+            {
+                "command": "quick-ray-dumper.rayPhpInfo",
+                "title": "Ray: PHP Info - Display PHP info"
+            },
+            {
+                "command": "quick-ray-dumper.raySeparator",
+                "title": "Ray: Separtor - Add a visual separator"
+            },
+            {
+                "command": "quick-ray-dumper.rayTrace",
+                "title": "Ray: Trace - Check entire backtrace"
+            },
+            {
+                "command": "quick-ray-dumper.rayException",
+                "title": "Ray: Exception - Display extended information about an Error or Exception"
+            },
+            {
+                "command": "quick-ray-dumper.rayHtml",
+                "title": "Ray: HTML - Send HTML to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayImage",
+                "title": "Ray: Image - Display an image in Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayJson",
+                "title": "Ray: JSON - Send JSON to Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayText",
+                "title": "Ray: Text - Display the raw text for a string while preserving whitespace formatting"
+            },
+            {
+                "command": "quick-ray-dumper.rayXml",
+                "title": "Ray: XML - Display formatted XML in Ray"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.63.0",
+        "@types/glob": "^7.1.4",
+        "@types/mocha": "^9.0.0",
+        "@types/node": "14.x",
+        "@typescript-eslint/eslint-plugin": "^5.1.0",
+        "@typescript-eslint/parser": "^5.1.0",
+        "eslint": "^8.1.0",
+        "glob": "^7.1.7",
+        "mocha": "^9.1.3",
+        "typescript": "^4.4.4",
+        "ts-loader": "^9.2.5",
+        "webpack": "^5.52.1",
+        "webpack-cli": "^4.8.0",
+        "@vscode/test-electron": "^1.6.2"
+    }
 }
