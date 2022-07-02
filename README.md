@@ -196,13 +196,9 @@ ray()->stopShowingEvents();
 
 Ray: Events (Callback) - Display all events that are executed in callback
 ```PHP
-event(new MyEvent()); // this event won't be displayed.
-
 ray()->showEvents(function() {
     event(new MyEvent()); // this event will be displayed.
 });
-
-event(new MyEvent()); // this event won't be displayed.
 ```
 
 Ray: Jobs - Display all jobs that are executed
