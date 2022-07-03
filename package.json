@@ -2,7 +2,7 @@
     "name": "quick-ray-dumper",
     "displayName": "Quick Ray Dumper",
     "description": "Quickly generate spatie/ray debug syntax, no longer need to type manually.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "author": {
         "name": "Muhammad Farhan Abdul Hadi"
     },
