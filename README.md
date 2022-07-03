@@ -237,7 +237,7 @@ Ray: Stop Show Http Client Requests - Stop displaying http client requests
 ray()->stopShowingHttpClientRequests();
 ```
 
-Ray: Http Client Requests (callback) - Display all http client requests that are executed in callback 
+Ray: Http Client Requests (callback) - Display all http client requests that are executed in callback
 ```PHP
 ray()->showHttpClientRequests(function() {
     Http::get('https://example.com'); // this request will be displayed.
@@ -247,6 +247,4 @@ ray()->showHttpClientRequests(function() {
 ## Credits
 - https://spatie.be/docs/ray/v1/introduction
 - https://github.com/LuisEGR/console-log-vscode
-
-
-
+- https://pngtree.com/freepng/pink-ufo-clipart_6125633.html
