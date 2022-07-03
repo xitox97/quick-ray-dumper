@@ -1,11 +1,19 @@
 {
     "name": "quick-ray-dumper",
     "displayName": "Quick Ray Dumper",
-    "description": "Automating the process of writing Ray's syntax to dump stuff",
-    "version": "0.0.1",
+    "description": "Quickly generate spatie/ray debug syntax, no longer need to type manually.",
+    "version": "0.1.1",
+    "author": {
+        "name": "Muhammad Farhan Abdul Hadi"
+    },
+    "icon": "./icon.png",
     "engines": {
         "vscode": "^1.63.0"
     },
+    "galleryBanner": {
+        "color": "#5271ff",
+        "theme": "dark"
+      },
     "categories": [
         "Other"
     ],
@@ -268,5 +276,11 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/xitox97/quick-ray-dumper.git"
-    }
+    },
+    "license": "SEE LICENSE IN LICENSE",
+    "bugs": {
+        "url": "https://github.com/xitox97/quick-ray-dumper",
+        "email": "farhan.abdhadi@gmail.com"
+      },
+      "homepage": "https://github.com/xitox97/quick-ray-dumper/blob/master/README.md"
 }
