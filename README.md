@@ -1,9 +1,13 @@
 # quick-ray-dumper 🛸
 
+[![Version](https://vsmarketplacebadge.apphb.com/version-short/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper) [![Version](https://vsmarketplacebadge.apphb.com/installs/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper)
+[![apm](https://img.shields.io/apm/l/vim-mode.svg)]()
+
 This extension helps you to generate [spatie/ray](https://spatie.be/docs/ray/v1/usage/reference) debug syntax, no longer need to type manually :fire:.
 
 ![](demo.gif)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I1DLOSS)
 
 ## Support Syntax
 - PHP
