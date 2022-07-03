@@ -1,4 +1,4 @@
-# quick-ray-dumper :flying_saucer:
+# quick-ray-dumper 🛸
 
 This extension helps you to generate [spatie/ray](https://spatie.be/docs/ray/v1/usage/reference) debug syntax, no longer need to type manually :fire:.
 
@@ -15,6 +15,11 @@ This extension helps you to generate [spatie/ray](https://spatie.be/docs/ray/v1/
 Ray: Variable - Display a string, array or object (*ctrl+alt+p* command shortcut)
 ```PHP
 ray($variable);
+```
+
+Ray: Variable - Display a string, array or object (*ctrl+alt+d* command shortcut)
+```PHP
+ray($variable)->die();
 ```
 
 Ray: Views - Display all views
