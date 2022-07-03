@@ -44,6 +44,7 @@ enum EAction {
     RAY_JSON = "rayJson",
     RAY_TEXT = "rayText",
     RAY_XML = "rayXml",
+    RAY_VARIABLE_DIE = "rayVariableDie",
 }
 
 export const activate = (context: vscode.ExtensionContext) => {
@@ -90,7 +91,8 @@ export const activate = (context: vscode.ExtensionContext) => {
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayImage", () => handleActionFunction(EAction.RAY_IMAGE)),
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayJson", () => handleActionFunction(EAction.RAY_JSON)),
         vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayText", () => handleActionFunction(EAction.RAY_TEXT)),
-        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayXml", () => handleActionFunction(EAction.RAY_XML))
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayXml", () => handleActionFunction(EAction.RAY_XML)),
+        vscode.commands.registerTextEditorCommand("quick-ray-dumper.rayVariableDie", () => handleActionFunction(EAction.RAY_VARIABLE_DIE)),
     )
 }
 
@@ -171,6 +173,7 @@ const handleActionFunction = async (action: string) => {
             [EAction.RAY_JSON]: "ray()->json(",
             [EAction.RAY_TEXT]: "ray()->text(",
             [EAction.RAY_XML]: "ray()->xml(",
+            [EAction.RAY_VARIABLE_DIE]: "ray(",
         }
 
         return actions[action]
@@ -186,11 +189,16 @@ const handleActionFunction = async (action: string) => {
         selectedText = "$" + selectedText
     }
 
-    const ray = "\n" + startSpace + `${getActionFunction(action)}${selectedText});`
+    let rayMessage: string
+    if (action !== EAction.RAY_VARIABLE_DIE) {
+        rayMessage = "\n" + startSpace + `${getActionFunction(action)}${selectedText});`
+    } else {
+        rayMessage = "\n" + startSpace + `${getActionFunction(action)}${selectedText})->die();`
+    }
     dest = dest.translate(0, line.text.length)
 
     editor!.edit((editBuilder) => {
-        editBuilder.insert(dest, ray)
+        editBuilder.insert(dest, rayMessage)
     })
 }
 

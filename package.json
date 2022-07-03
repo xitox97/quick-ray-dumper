@@ -2,10 +2,11 @@
     "name": "quick-ray-dumper",
     "displayName": "Quick Ray Dumper",
     "description": "Quickly generate spatie/ray debug syntax, no longer need to type manually.",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": {
         "name": "Muhammad Farhan Abdul Hadi"
     },
+    "publisher": "FarhanHadi",
     "icon": "icon.png",
     "engines": {
         "vscode": "^1.63.0"
@@ -60,7 +61,8 @@
         "onCommand:quick-ray-dumper.rayImage",
         "onCommand:quick-ray-dumper.rayJson",
         "onCommand:quick-ray-dumper.rayText",
-        "onCommand:quick-ray-dumper.rayXml"
+        "onCommand:quick-ray-dumper.rayXml",
+        "onCommand:quick-ray-dumper.rayVariableDie"
     ],
     "main": "./dist/extension.js",
     "contributes": {
@@ -236,6 +238,10 @@
             {
                 "command": "quick-ray-dumper.rayXml",
                 "title": "Ray: XML - Display formatted XML in Ray"
+            },
+            {
+                "command": "quick-ray-dumper.rayVariableDie",
+                "title": "Ray: Variable (Die) - Display a string, array or object with die()"
             }
         ],
         "keybindings": [
@@ -243,6 +249,11 @@
                 "command": "quick-ray-dumper.rayVariable",
                 "key": "ctrl+alt+p",
                 "mac": "ctrl+alt+p"
+            },
+            {
+                "command": "quick-ray-dumper.rayVariableDie",
+                "key": "ctrl+alt+d",
+                "mac": "ctrl+alt+d"
             }
         ]
     },
