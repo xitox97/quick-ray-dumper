@@ -1,7 +1,7 @@
 # quick-ray-dumper 🛸
 
-[![Version](https://vsmarketplacebadge.apphb.com/version-short/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper) [![Version](https://vsmarketplacebadge.apphb.com/installs/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper)
-[![apm](https://img.shields.io/apm/l/vim-mode.svg)]()
+[![Version](https://vsmarketplacebadges.dev/version-short/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper) [![Version](https://vsmarketplacebadges.dev/installs/FarhanHadi.quick-ray-dumper.svg)](https://marketplace.visualstudio.com/items?itemName=FarhanHadi.quick-ray-dumper)
+![GitHub](https://img.shields.io/github/license/xitox97/quick-ray-dumper)
 
 This extension helps you to generate [spatie/ray](https://spatie.be/docs/ray/v1/usage/reference) debug syntax, no longer need to type manually :fire:.
 
